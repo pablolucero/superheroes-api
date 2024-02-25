@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.plucero</groupId>
     <artifactId>superhero</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>superhero</name>
     <description>A superhero CRUD API</description>
     <properties>
