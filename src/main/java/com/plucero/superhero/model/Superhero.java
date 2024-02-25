@@ -36,4 +36,8 @@ public final class Superhero {
     public static Superhero named(Long id, String name) {
         return new Superhero(id, name);
     }
+
+    public static Superhero fromRequest(SuperheroRequest superheroRequest) {
+        return Superhero.named(superheroRequest.name());
+    }
 }

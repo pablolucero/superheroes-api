@@ -1,10 +1,14 @@
 package com.plucero.superhero.controller;
 
 import com.plucero.superhero.model.Superhero;
+import com.plucero.superhero.model.SuperheroRequest;
 import com.plucero.superhero.service.SuperheroService;
 import com.plucero.superhero.utils.LogExecutionTime;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,39 +33,47 @@ public class SuperheroController {
         this.superheroService = superheroService;
     }
 
-    @GetMapping("")
+    @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
     @LogExecutionTime
+    @Operation(summary = "List all the superheroes")
+    @ApiResponse(responseCode = "200", description = "A superheroes list")
     public ResponseEntity<List<Superhero>> list() {
         return ResponseEntity.ok(superheroService.list());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @LogExecutionTime
+    @Operation(summary = "Find a superhero by id")
     public ResponseEntity<Superhero> findById(@PathVariable Long id) {
         return ResponseEntity.ok(superheroService.findById(id));
     }
 
-    @GetMapping("/search")
+    @GetMapping(path = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
     @LogExecutionTime
+    @Operation(summary = "Find superheroes by name")
     public ResponseEntity<List<Superhero>> findByName(@RequestParam String name) {
         return ResponseEntity.ok(superheroService.findByName(name));
     }
 
-    @PostMapping("")
+    @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     @LogExecutionTime
-    public Superhero create(@RequestBody @Valid Superhero superhero) {
+    @Operation(summary = "Creates a superhero")
+    public Superhero create(@RequestBody @Valid SuperheroRequest superheroRequest) {
+        Superhero superhero = Superhero.fromRequest(superheroRequest);
         return superheroService.create(superhero);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @LogExecutionTime
+    @Operation(summary = "Updates a superhero")
     public ResponseEntity<Superhero> update(@PathVariable Long id, @RequestBody Superhero superhero) {
         return ResponseEntity.ok(superheroService.update(id, superhero));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(path = "/{id}")
     @LogExecutionTime
+    @Operation(summary = "Deletes a superhero")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         if (superheroService.delete(id)) {
             return ResponseEntity.noContent().build();
