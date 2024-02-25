@@ -1,5 +1,6 @@
 package com.plucero.superhero;
 
+import com.plucero.superhero.exception.SuperheroAlreadyExistException;
 import com.plucero.superhero.exception.SuperheroNotFoundException;
 import com.plucero.superhero.model.Superhero;
 import com.plucero.superhero.repository.SuperheroRepository;
@@ -45,6 +46,15 @@ class SuperheroServiceUnitTest {
 
         assertNotNull(createdSuperhero.getId());
         assertEquals("Flash", createdSuperhero.getName());
+    }
+
+    @Test
+    void testCreateSuperheroThatAlreadyExist() {
+        Superhero superheroToSave = Superhero.named("Flash");
+
+        when(repository.existsByNameIgnoreCase(superheroToSave.getName())).thenReturn(true);
+
+        assertThrows(SuperheroAlreadyExistException.class, () -> superheroService.create(superheroToSave));
     }
 
     @Test
