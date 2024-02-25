@@ -2,6 +2,7 @@ package com.plucero.superhero.controller;
 
 import com.plucero.superhero.model.Superhero;
 import com.plucero.superhero.service.SuperheroService;
+import com.plucero.superhero.utils.LogExecutionTime;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,32 +30,38 @@ public class SuperheroController {
     }
 
     @GetMapping("")
+    @LogExecutionTime
     public ResponseEntity<List<Superhero>> list() {
         return ResponseEntity.ok(superheroService.list());
     }
 
     @GetMapping("/{id}")
+    @LogExecutionTime
     public ResponseEntity<Superhero> findById(@PathVariable Long id) {
         return ResponseEntity.ok(superheroService.findById(id));
     }
 
     @GetMapping("/search")
+    @LogExecutionTime
     public ResponseEntity<List<Superhero>> findByName(@RequestParam String name) {
         return ResponseEntity.ok(superheroService.findByName(name));
     }
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
+    @LogExecutionTime
     public Superhero create(@RequestBody @Valid Superhero superhero) {
         return superheroService.create(superhero);
     }
 
     @PutMapping("/{id}")
+    @LogExecutionTime
     public ResponseEntity<Superhero> update(@PathVariable Long id, @RequestBody Superhero superhero) {
         return ResponseEntity.ok(superheroService.update(id, superhero));
     }
 
     @DeleteMapping("/{id}")
+    @LogExecutionTime
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         if (superheroService.delete(id)) {
             return ResponseEntity.noContent().build();
