@@ -150,6 +150,21 @@ class FunctionalEndpointWithMockedRepositoryTests {
     }
 
     @Test
+    public void createSuperheroWithInvalidData() throws Exception {
+        final String jsonRequest = """
+                    {
+                      "invalidKey": "Deadpool"
+                    }
+                """;
+
+        mockMvc.perform(post("/api/superheroes")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonRequest)
+                )
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     public void modifySuperhero() throws Exception {
         when(superheroRepository.existsById(1L)).thenReturn(true);
 
