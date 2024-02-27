@@ -1,0 +1,10 @@
+name: superheroes-api
+
+services:
+  java:
+    container_name: superheroes_container
+    image: amazoncorretto:21
+    command:
+    restart: always
+    ports:
+      - "8080:8080"

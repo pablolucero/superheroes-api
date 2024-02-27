@@ -1,0 +1,158 @@
+{
+	"info": {
+		"_postman_id": "c48412b4-7bfd-474a-9486-a8e6faf7664f",
+		"name": "superheroes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1501765"
+	},
+	"item": [
+		{
+			"name": "list heroes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/superheroes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"superheroes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create a hero",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Deadpool\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/superheroes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"superheroes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update a hero",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Deadpool\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/superheroes/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"superheroes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/superheroes/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"superheroes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search by name like",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/superheroes/search?name=man",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"superheroes",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "man"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete hero",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/superheroes/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"superheroes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
