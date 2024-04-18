@@ -13,10 +13,7 @@ Pablo Lucero
 
 ## Docker
 
-Para crear la imagen 
-```bash
-./mvnw clean install
-```
+Para crear la imagen
 ```bash
 docker build -t superheros-api .
 ```
