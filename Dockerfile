@@ -1,8 +1,4 @@
 FROM amazoncorretto:21
-
-ARG JAR_FILE=target/superhero-1.0.0.jar
-COPY ${JAR_FILE} superhero.jar
-
+COPY target/*.jar app.jar
 EXPOSE 8080
-
-ENTRYPOINT ["java","-jar","/superhero.jar"]
+ENTRYPOINT ["java","-jar","app.jar","-web -webAllowOthers -tcp -tcpAllowOthers -browser"]

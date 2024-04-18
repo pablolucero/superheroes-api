@@ -13,17 +13,25 @@ Pablo Lucero
 
 ## Docker
 
-Para crear la imagen `./mvnw spring-boot:build-image`
+Para crear la imagen 
+```bash
+./mvnw clean install
+```
+```bash
+docker build -t superheros-api .
+```
 
-Para levantar un contenedor `docker run -p 8080:8080 superhero:1.0.0`
-
+Para levantar un contenedor
+```bash
+docker run --rm --name superheros-api -p 8080:8080 superheros-api
+```
 ## Tests
 
 Para correrlos ejecutar `./mvnw clean test`
 
 ## Base de datos
 
-Consola H2: `http://localhost:8080/h2-console`
+Consola H2: http://localhost:8080/h2-console
 
 Las credenciales están en el [application.properties](src%2Fmain%2Fresources%2Fapplication.properties)
 
